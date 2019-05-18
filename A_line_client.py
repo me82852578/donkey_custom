@@ -7,7 +7,8 @@ if len(sys.argv) != 2:
     sys.exit(1)
 
 obj = socket.socket()
-obj.connect(('192.168.32.171', 8001))
+#obj.connect(('172.20.10.4', 8001))
+obj.connect(('192.168.32.187', 8001))
 
 
 stop_point = 'go_{}'.format(sys.argv[1])

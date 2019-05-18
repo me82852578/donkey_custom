@@ -1,7 +1,8 @@
 import socket
 
 obj = socket.socket()
-obj.connect(('192.168.32.171', 8001))
+#obj.connect(('192.168.32.171', 8001))
+obj.connect(('192.168.32.187', 8001))
 
 while True:
     inp = input('>>>')

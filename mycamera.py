@@ -5,7 +5,8 @@ import imutils
 import pickle
 import cv2
 
-vs = VideoStream(usePiCamera=True).start()
+#vs = VideoStream(usePiCamera=True).start()
+vs = VideoStream(src=0).start()
 time.sleep(2)
 while True:
     frame = vs.read()

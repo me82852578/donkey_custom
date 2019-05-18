@@ -20,9 +20,11 @@ def detector_strat():
     counter = 0
     while True:
         frame = vs.read()
-        frame = imutils.resize(frame, width=400)
+        frame = imutils.resize(frame, width=800)
         frame = frame.copy()
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+       # frame = cv2.GaussianBlur(frame, (5, 5), 0)
+       # frame = cv2.Canny(frame, 30, 150)
         rects = detector(gray, 0)
 
         if len(rects) > 0:
@@ -41,9 +43,7 @@ def detector_strat():
                 if bH < 0:
                     bH = 0
 
-                print(bX, bY, bW, bH)
                 cropped = frame[bY : bH, bX : bW]
-                print(bX, bY, bW, bH)
 
             cv2.imshow("Frame", cropped)
 

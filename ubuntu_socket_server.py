@@ -133,7 +133,7 @@ while inputs:
                 s.send(next_msg)
             except:
                 pass
-            inputs[2].send(next_msg)
+            inputs[1].send(next_msg)
      
     for s in exceptional:
         print('exceptional')

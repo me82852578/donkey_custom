@@ -47,7 +47,7 @@ class LocalWebController(tornado.web.Application):
 
         self.angle = 0.0
         self.throttle = 0.0
-        self.mode = 'auto'
+        self.mode = 'user'
         self.recording = False
         self.ip_address = util.web.get_ip_address()
         self.access_url = 'http://{}:{}'.format(self.ip_address, self.port)
@@ -96,7 +96,8 @@ class LocalWebController(tornado.web.Application):
 
     def update(self):
         sserver = socket.socket()
-        sserver.connect(('192.168.32.171', 8001)) 
+        sserver.connect(('192.168.32.187', 8001)) 
+        #sserver.connect(('172.20.10.4', 8001)) 
         print('socket connected!')
 
         go_where = ''
@@ -105,25 +106,37 @@ class LocalWebController(tornado.web.Application):
             # server_res = sserver.recv(1024)
             server_res = str(sserver.recv(1024),encoding='utf-8')
             print(server_res)
-            
 
             if server_res=='quit': break
-            elif server_res == 'A':
-                print('GO~~~~~~~~~~~~~~')
-                self.mode = 'auto'
             elif server_res == 'STOP':
-                print('STOP~~~~~~~~~~~~~~')
+                print('STOP 5 seconds')
                 self.mode = 'user'
                 time.sleep(5)
                 self.mode = 'auto'
-            elif 'go_' in server_res:
-                go_where = server_res.split('_')[1]   
+            elif server_res == 'green':
+                print('GREEN')
+                self.mode = 'auto'
+            elif server_res == 'red':
+                print('RED')
+                self.mode = 'user'
+            elif server_res == 'left':
+                print('left')
+                # self.mode = 'user'
+            elif server_res == 'right':
+                print('right')
+                # self.mode = 'user'
+            elif server_res == 'on':
+                print('on')
+                self.mode = 'auto'
                 
+
+            elif 'go_' in server_res:
+                self.mode = 'auto'
+                go_where = server_res.split('_')[1]   
             if go_where == server_res:
                 print('STOP~~~~~~~~~~~~~~{}'.format(go_where))
+                go_where = ''
                 self.mode = 'user'
-                time.sleep(5)
-                self.mode = 'auto'
 
         sserver.close()
 
