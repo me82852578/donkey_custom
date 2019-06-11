@@ -7,7 +7,8 @@ import argparse
 import socket
 
 obj = socket.socket()
-obj.connect(('192.168.32.187', 8001))
+#obj.connect(('192.168.32.187', 8001))
+obj.connect(('172.20.10.4', 8001))
 
 # This is a super simple (but slow) example of running face recognition on live video from your webcam.
 # There's a second example that's a little more complicated but runs faster.

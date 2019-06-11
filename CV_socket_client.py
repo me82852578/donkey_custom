@@ -13,8 +13,8 @@ import numpy as np
 #ip_path = '192.168.1.115'
 #ip_path = '192.168.32.187'
 # ip_path = '192.168.32.171'
-#ip_path = '172.20.10.4'
-ip_path = '192.168.32.187'
+ip_path = '172.20.10.4'
+#ip_path = '192.168.32.187'
 
 sserver = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 sserver.connect((ip_path, 8001)) 
@@ -27,12 +27,12 @@ time.sleep(2)
 photo_step = 2
 counter = 0
 # scp_command = 'scp /home/pi/cust_func/mask_img/* andrew@192.168.1.115:/home/andrew/cust_func/mask_img'
-#scp_command = 'scp /home/pi/cust_func/mask_img/* jay@172.20.10.4:/home/jay/cust_func/mask_img'
-scp_command = 'scp /home/pi/cust_func/mask_img/* jay@192.168.32.187:/home/jay/cust_func/mask_img'
+scp_command = 'scp /home/pi/cust_func/mask_img/* jay@172.20.10.4:/home/jay/cust_func/mask_img'
+#scp_command = 'scp /home/pi/cust_func/mask_img/* jay@192.168.32.187:/home/jay/cust_func/mask_img'
 while True:
 
     frame = vs.read()
-    frame = imutils.resize(frame, width=300)
+    frame = imutils.resize(frame, width=500)
     frame = frame.copy()
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     rects = detector(gray, 0)
@@ -107,6 +107,7 @@ while True:
         counter += 1
 
     else:
+        frame = cv2.Canny(frame,30,150)
         cv2.imshow("Frame", frame)
         # cdky.command_to_car(["/home/pi/jay_project/donkey_PWM.py {}".format('STOP')])
 

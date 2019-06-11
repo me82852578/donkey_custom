@@ -38,6 +38,20 @@ app.post("/webhook", function (req, res) {
         })
         console.log('go to C port')
     }
+    else if (donkeygo == "STOP"){
+        let command_str = 'python3 ~/cust_func/A_line_client.py STOP'
+        exec(command_str, (error,stdout, stderr) => {
+            console.log(stdout);
+        })
+        console.log('donkey STOP !')
+    }
+    else if (donkeygo == "DONUT"){
+        let command_str = 'python3 ~/cust_func/A_line_client.py DONUT'
+        exec(command_str, (error,stdout, stderr) => {
+            console.log(stdout);
+        })
+        console.log('donkey DONUT !')
+    }
     else{
 	console.log(donkeygo)
         return console.log('error')

@@ -18,8 +18,10 @@ def start_V():
 
 start_V()
 
-
 if situation == "STOP":
     pwm.set_pwm(0,0,389)
     pwm.set_pwm(1,0,390)
 
+if situation == "c":
+    pwm.set_pwm(0,0,395)
+    pwm.set_pwm(1,0,550)

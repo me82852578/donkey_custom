@@ -96,8 +96,8 @@ class LocalWebController(tornado.web.Application):
 
     def update(self):
         sserver = socket.socket()
-        sserver.connect(('192.168.32.187', 8001)) 
-        #sserver.connect(('172.20.10.4', 8001)) 
+        #sserver.connect(('192.168.32.187', 8001)) 
+        sserver.connect(('172.20.10.4', 8001)) 
         print('socket connected!')
 
         go_where = ''
@@ -137,6 +137,14 @@ class LocalWebController(tornado.web.Application):
                 print('STOP~~~~~~~~~~~~~~{}'.format(go_where))
                 go_where = ''
                 self.mode = 'user'
+            elif go_where == 'STOP':
+                self.mode = 'user'
+                self.angle = 0.0
+                self.throttle = 0.0
+            elif go_where == 'DONUT':
+                self.mode = 'user'
+                self.angle = 0.6
+                self.throttle = 1.0
 
         sserver.close()
 
